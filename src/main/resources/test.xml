@@ -1,10 +1,9 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
-    <soapenv:Header/>
-    <soapenv:Body>
-        <tem:GetConversionRate>
-            <tem:CurrencyFrom>USD</tem:CurrencyFrom>
-            <tem:CurrencyTo>GEL</tem:CurrencyTo>
-            <tem:RateDate>2020-02-02</tem:RateDate>
-        </tem:GetConversionRate>
-    </soapenv:Body>
-</soapenv:Envelope>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+    <GetCurrencyRates xmlns="http://tempuri.org/">
+        <RateDate>2020-02-02</RateDate>
+    </GetCurrencyRates>
+</soap:Body>
+</soap:Envelope>
