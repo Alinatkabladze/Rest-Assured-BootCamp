@@ -13,7 +13,8 @@ public class Log {
     }
     @Test
     void testLogging2() {
-        RestAssured.given()
+        RestAssured
+                .given()
                 .when()
                 .log().all() // after preparing request but not yet send to server
                 .get("https://chercher.tech/sample/api/product/read")

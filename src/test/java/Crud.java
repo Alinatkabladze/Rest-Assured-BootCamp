@@ -19,9 +19,11 @@ public class Crud {
     public void deleteRequest() {
         Response response = given()
                 .header("Content-type", "application/json")
+                .log().all()
                 .when()
                 .delete("/posts/1")
                 .then()
+                .log().all()
                 .extract().response();
         Assert.assertEquals(200, response.statusCode());
     }

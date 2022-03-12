@@ -47,7 +47,7 @@ public class BDDTest {
                 get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
                 then().
                 assertThat().
-                body("MRData.CircuitTable.Circuits.circuitId",hasSize(numberOfRaces));
+                body("MRData.CircuitTable.Circuits.circuitId[2]",hasSize(numberOfRaces));
     }
 
     @Test
@@ -96,8 +96,7 @@ public class BDDTest {
                 when().
                 get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
                 then().
-                assertThat().
-                body("MRData.CircuitTable.Circuits.circuitId",hasSize(numberOfRaces));
+                log().body();
     }
     @Test
     public void test_APIWithBasicAuthentication_ShouldBeGivenAccess() {

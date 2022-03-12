@@ -7,6 +7,9 @@ import java.util.HashMap;
         import io.restassured.RestAssured;
         import io.restassured.http.ContentType;
 
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.lessThan;
+
 public class CreatingNestedJsonObject {
 
     @Test
@@ -42,7 +45,7 @@ public class CreatingNestedJsonObject {
                 .assertThat()
                 .statusCode(200)
                 .log()
-                .all();
+                .ifStatusCodeMatches(lessThan(300));
     }
 
 }

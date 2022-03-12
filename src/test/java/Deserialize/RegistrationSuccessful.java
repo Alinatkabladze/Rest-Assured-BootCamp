@@ -1,6 +1,6 @@
 package Deserialize;
 
-import com.sun.xml.bind.v2.model.core.TypeRef;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;

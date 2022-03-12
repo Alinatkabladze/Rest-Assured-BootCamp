@@ -1,34 +1,72 @@
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class Hamcrest {
+
     @Test
-    void test() {
-        RestAssured.given().when()
-                .get("https://chercher.tech/sample/api/product/read?id=3793")
-                .then()
-                .body("id[0]", equalTo("3793"));
+    public void test_NumberOfCircuits_ShouldBe20_Parameterized() {
+
+        String season = "2017";
+        int numberOfRaces = 20;
+
+        given().
+                pathParam("raceSeason",season).
+                when().
+                get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
+                then().
+                assertThat().
+                body("MRData.CircuitTable.Circuits.circuitName[0]",equalTo("Albert Park Grand Prix Circuit"));
     }
+
     @Test
     void test2() {
-        RestAssured.given().when()
-                .get("https://chercher.tech/sample/api/product/read")
-                .then()
-                .body("records.id", empty());
+        String season = "2017";
+
+        given().
+                pathParam("raceSeason",season).
+                when().
+                get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
+                then().
+                assertThat().
+                body("MRData.CircuitTable.Circuits",empty());
     }
     @Test
     void test3() {
-        RestAssured.given().when()
-                .get("https://chercher.tech/sample/api/product/read")
-                .then()
-                .body("records.id[1,2]",hasItems("4361","4360"));
+        String season = "2017";
+
+        given().
+                pathParam("raceSeason",season).
+                when().
+                get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
+                then().
+                assertThat()
+                .body("MRData.CircuitTable.Circuits.circuitName[0,1]",
+                        hasItems("Albert Park Grand Prix Circuit","Circuit of the Americas"))
+                .body("MRData.CircuitTable.Circuits[0]",
+                        hasKey("circuitName"));
     }
+
+
     @Test
     void test4(){
-        String testString = "Hector killed Achilles";
-        assertThat(testString, anyOf(startsWith("Hec"), containsString("baeldung")));
+        String season = "2017";
+
+        given().
+                pathParam("raceSeason",season)
+        .log().all().
+                when().
+                get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
+                then().
+                body("MRData.CircuitTable.Circuits.circuitName[0,1]",
+                        anyOf(
+                                hasItems("Albert Park Grand Prix Circuit",
+                                        "Circuit of the Americas")
+                                ,hasItems("123","888")));
+
     }
 }
+
