@@ -1,7 +1,7 @@
 package Deserialize_new;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ProductList {
-    List<Record> records;
+    public ArrayList<Record> records;
 }

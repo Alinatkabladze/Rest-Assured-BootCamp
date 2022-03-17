@@ -14,6 +14,7 @@ public class GetBook {
                 .get("https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862")
                 .as(Book.class);
         System.out.println(response.pages);
+        System.out.println(response.isbn);
     }
     @Test
     public void getBookList() {

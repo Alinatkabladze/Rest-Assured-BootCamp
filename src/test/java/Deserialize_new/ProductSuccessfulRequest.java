@@ -11,10 +11,10 @@ public class ProductSuccessfulRequest {
     public void getProduct() {
        ProductList response= RestAssured.given().when()
                 .get("https://chercher.tech/sample/api/product/read")
+               //.then().log().all();
+              // .as(ProductList.class);
                .jsonPath()
                .getObject("", ProductList.class);
-
-
         System.out.println(response.records.get(0).id);
     }
 }
