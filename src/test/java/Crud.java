@@ -1,12 +1,10 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
 
 public class Crud {
 
@@ -17,13 +15,15 @@ public class Crud {
 
     @Test
     public void deleteRequest() {
-        Response response = given()
+        int response =
+                given()
                 .header("Content-type", "application/json")
                 .when()
                 .delete("/posts/1")
                 .then()
-                .extract().response();
-        Assert.assertEquals(200, response.statusCode());
+
+                .extract().statusCode();
+        Assert.assertEquals(400, response);
     }
 
 

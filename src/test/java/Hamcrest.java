@@ -14,7 +14,7 @@ public class Hamcrest {
     }
     @Test
     void test2() {
-        RestAssured.given().when()
+        RestAssured.when()
                 .get("https://chercher.tech/sample/api/product/read")
                 .then()
                 .body("records.id", empty());
