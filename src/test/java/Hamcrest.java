@@ -35,7 +35,7 @@ public class Hamcrest {
                 body("MRData.CircuitTable.Circuits",empty());
     }
     @Test
-    void test3() {
+    void testWithSoftAssertion() {
         String season = "2017";
 
         given().
@@ -45,9 +45,10 @@ public class Hamcrest {
                 then().
                 assertThat()
                 .body("MRData.CircuitTable.Circuits.circuitName[0,1]",
-                        hasItems("Albert Park Grand Prix Circuit","Circuit of the Americas"))
-                .body("MRData.CircuitTable.Circuits[0]",
-                        hasKey("circuitName"));
+                        hasItems("Albert Park Grand Prix Circuit","Circuit of the 87454")
+                ,"MRData.CircuitTable.Circuits[0]",
+                        hasKey("4444"));
+
     }
 
 
@@ -62,10 +63,23 @@ public class Hamcrest {
                 get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
                 then().
                 body("MRData.CircuitTable.Circuits.circuitName[0,1]",
-                        anyOf(
-                                hasItems("Albert Park Grand Prix Circuit",
+                        anyOf(hasItems("Albert Park Grand Prix Circuit",
                                         "Circuit of the Americas")
                                 ,hasItems("123","888")));
+
+    }
+    @Test
+    void testForHasEntry(){
+        String season = "2017";
+
+        given().
+                pathParam("raceSeason",season)
+                .log().all().
+                when().
+                get("http://ergast.com/api/f1/{raceSeason}/circuits.json").
+                then().
+                body("MRData.CircuitTable.Circuits[0].circuitId",
+                                        equalTo("albert_park"));
 
     }
 }
