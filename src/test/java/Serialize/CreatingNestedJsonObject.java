@@ -1,4 +1,4 @@
-package Meeting3.Serialization;
+package Serialize;
 import java.util.HashMap;
         import java.util.Map;
 
