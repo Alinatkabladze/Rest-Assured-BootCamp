@@ -1,4 +1,3 @@
-package Meeting4_Soap;
 import io.restassured.RestAssured;
 import io.restassured.internal.path.xml.NodeChildrenImpl;
 import io.restassured.path.xml.XmlPath;
@@ -61,7 +60,7 @@ public class XMLExamples {
         System.out.println("getAttribute : "+ books.get(0).getAttribute("category"));
         System.out.println("get : "+ books.get(0).get("year"));
         System.out.println("children : "+ books.get(0).children().list());
-        System.out.println("children : "+ books.get(0).children().get("price"));
-        System.out.println("getNode : "+ books.get(0).getNode("price").children().get(0));
+        System.out.println("children : "+ books.get(0).get("price"));
+        System.out.println("getNode : "+ books.get(0).getNode("price").children().get(1));
     }
 }

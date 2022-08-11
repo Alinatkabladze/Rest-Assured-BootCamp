@@ -1,6 +1,4 @@
-package Meeting4_Soap;
-
-    import java.io.File;
+import java.io.File;
     import io.restassured.RestAssured;
     import org.testng.annotations.Test;
     import static org.testng.AssertJUnit.assertEquals;
