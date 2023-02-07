@@ -3,22 +3,24 @@ package Deserialize;
 import io.restassured.RestAssured;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 public class GetBook {
     @Test
     public void getBookExamplesWithJackonAndJsonPAth() {
-        Book book = RestAssured.given().when()
-                .get("https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862")
-                .as(Book.class);
-
-        JsonPath response = RestAssured.given().when()
-                .get("https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862").jsonPath();
+        Response response = RestAssured.given().when()
+                .get("https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862");
 
 
-        System.out.println("JsonPath "+response.getString("pages"));
-        System.out.println("Custom class "+book.pages);
-        System.out.println(book.isbn);
+        if(response.statusCode()==400){
+           NotValidISBN notValidISBN = response.as(NotValidISBN.class);
+            System.out.println(notValidISBN.getCode());
+        }
+        else if(response.statusCode()==200){
+            Book book=response.as(Book.class);
+            System.out.println(book.title);
+        }
     }
     @Test
     public void getBookList() {

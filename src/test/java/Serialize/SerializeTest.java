@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 public class SerializeTest {
     @Test
     public void getBookExamplesWithJackonAndJsonPAth() {
+
        /* Map<String,Object> jsonBodyUsingMap = new HashMap<String,Object>();
         jsonBodyUsingMap.put("firstname", "Jim");
         jsonBodyUsingMap.put("lastname", "Brown");
