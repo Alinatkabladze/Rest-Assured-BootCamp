@@ -1,4 +1,4 @@
-package Meeting4;
+package Lombok;
 
 public class WithoutLombokUser {
 

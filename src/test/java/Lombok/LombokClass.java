@@ -1,4 +1,4 @@
-package Meeting4;
+package Lombok;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,8 +27,8 @@ public class LombokClass {
     public String getJsonData() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         user = new WithLombokUser();
-        user.setFirstName("Irina");
-        user.setLastName("Inashvili");
+        user.setFirstName("Test");
+        user.setLastName("Test");
         user.setTotalPrice(100);
         System.out.println(mapper.writeValueAsString(user));
         return mapper.writeValueAsString(user);
@@ -43,6 +43,6 @@ public class LombokClass {
         RequestSpecification spec = getRequestSpec(getJsonData());
         Response response = sendRequest(spec);
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertEquals(user.getFirstName(),"Irina");
+        Assert.assertEquals(user.getFirstName(),"Test");
     }
 }
