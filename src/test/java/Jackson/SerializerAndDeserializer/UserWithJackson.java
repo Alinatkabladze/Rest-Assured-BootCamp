@@ -26,7 +26,7 @@ public class UserWithJackson {
             password;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public int age;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     public LocalDateTime registrationDate;

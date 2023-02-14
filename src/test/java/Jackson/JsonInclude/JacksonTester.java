@@ -8,7 +8,7 @@ public class JacksonTester {
     public static void main(String args[]){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Student student = new Student(1,"");
+            Student student = new Student(1,"test");
             String jsonString = mapper
                     .writerWithDefaultPrettyPrinter()
                     .writeValueAsString(student);

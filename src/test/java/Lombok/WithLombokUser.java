@@ -5,6 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class WithLombokUser {
     @NonNull
     private String firstName;

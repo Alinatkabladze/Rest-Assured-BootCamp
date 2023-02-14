@@ -14,7 +14,7 @@ public class NonDefault {
       public void test() throws JsonProcessingException {
             Employee employee = new Employee();
             employee.setName("Trish");
-            employee.setFullTime(false);
+            employee.setFullTime(true);
             employee.setPhones(new ArrayList<>());
             employee.setSalary(Integer.valueOf(0));
             employee.setDateOfBirth(new Date(0));

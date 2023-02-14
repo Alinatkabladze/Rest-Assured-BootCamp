@@ -9,21 +9,23 @@ public class JacksonJsonProperty {
         ObjectMapper mapper = new ObjectMapper();
         String json = "{\"id\" : 1}";
         Student student = mapper.readerFor(Student.class).readValue(json);
-        System.out.println(student.getTheId());
+        System.out.println(student.getFirstId());
     }
 }
 class Student {
+
+
     private int id;
     Student(){}
     Student(int id){
         this.id = id;
     }
-   @JsonProperty("id")
-    public int getTheId() {
+
+    @JsonProperty("id")
+    public int getFirstId() {
         return id;
     }
-    @JsonProperty("id")
-    public void setTheId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

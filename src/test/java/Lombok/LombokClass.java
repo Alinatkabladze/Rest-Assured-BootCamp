@@ -26,7 +26,7 @@ public class LombokClass {
 
     public String getJsonData() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        user = new WithLombokUser();
+        user = new WithLombokUser("Test","Test",100);
         user.setFirstName("Test");
         user.setLastName("Test");
         user.setTotalPrice(100);
