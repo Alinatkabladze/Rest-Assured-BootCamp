@@ -1,4 +1,4 @@
-package Serialize;
+package models.request;
 
 public class BookingDates {
     public String checkin;

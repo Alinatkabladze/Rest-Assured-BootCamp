@@ -1,4 +1,4 @@
-package Deserialize;
+package models.response;
 
 import java.util.ArrayList;
 

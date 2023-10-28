@@ -1,4 +1,4 @@
-package Deserialize;
+package models.response;
 
 public class NotValidISBN {
     private String code;

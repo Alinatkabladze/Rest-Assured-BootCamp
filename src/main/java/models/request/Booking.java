@@ -1,6 +1,6 @@
-package Serialize;
+package models.request;
 
-public class Root{
+public class Booking {
     public String firstname;
     public String lastname;
     public int totalprice;
