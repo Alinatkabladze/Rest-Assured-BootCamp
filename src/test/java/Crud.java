@@ -10,6 +10,7 @@ public class Crud {
 
     @BeforeClass
     public static void setup() {
+        RestAssured.useRelaxedHTTPSValidation();
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
     }
 
@@ -21,7 +22,6 @@ public class Crud {
                 .when()
                 .delete("/posts/1")
                 .then()
-
                 .extract().statusCode();
         Assert.assertEquals(400, response);
     }
@@ -41,18 +41,15 @@ public class Crud {
 
     @Test
     public void test2() {
-
         JSONObject request = new JSONObject();
         request.put( "name", "morpheus");
         request.put( "job","leader");
-
-
 
         given().
                 body(request.toJSONString()).
                 when().
                 post("https://reqres.in/api/users").
-                then().log().body().statusCode(200);
+                then().log().body().statusCode(201);
 
     }
     @Test

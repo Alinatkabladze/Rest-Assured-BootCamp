@@ -1,18 +1,22 @@
 package Meeting2;
 
-
-
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+
 
 import static io.restassured.RestAssured.*;
 
 public class RequestSpecExamples {
+    @BeforeClass
+    public static void setup() {
+        RestAssured.useRelaxedHTTPSValidation();
+    }
     @Test
     public void example1() throws Exception {
         // given:
@@ -43,17 +47,24 @@ public class RequestSpecExamples {
         requestParams.put("job", "BAA");
         requestParams.get("name");
 
-        // given:
+
         RequestSpecification request = given()
                 .header("Content-Type", "application/json")
                // .body("{\"name\":chaya,\"job\":BAA\"}"); // bad practice
                 .body(requestParams);
-        // when:
+        ResponseSpecification responseSpecification =
+                given()
+                        .then()
+                        .response()
+                        .contentType("application/json");
+
+
         Response response =
                 given()
                 .spec(request)
                 .put("https://reqres.in/api/users/2");
         response.then()
+                .spec(responseSpecification)
                 //.assertThat().body("updatedAt",equalTo("2022-07-30T08:49:37.283Z"))
                 .log().ifStatusCodeIsEqualTo(200);
 
